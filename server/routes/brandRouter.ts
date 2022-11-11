@@ -1,11 +1,13 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 
-export default Router();
-const router: Router = express.Router();
+import DeviceBrandController from '../controllers/brandController';
 
-router.post('/',);
-router.get('/',);
-router.put('/',);
-router.delete('/',);
+const router = Router();
+const deviceBrandController = new DeviceBrandController();
 
-module.exports = express.Router();
+router.post('/', deviceBrandController.create);
+router.get('/', deviceBrandController.getAll);
+router.put('/', deviceBrandController.change);
+router.delete('/', deviceBrandController.delete);
+
+export default router;

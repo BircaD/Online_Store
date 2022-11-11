@@ -1,11 +1,13 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 
-export default Router();
+import DeviceTypeController from '../controllers/typeController';
+
 const router = Router();
+const deviceTypeController = new DeviceTypeController();
 
-router.post('/',);
-router.get('/',);
-router.put('/',);
-router.delete('/',);
+router.post('/', deviceTypeController.create);
+router.get('/', deviceTypeController.getAll);
+router.put('/', deviceTypeController.change);
+router.delete('/', deviceTypeController.delete);
 
-module.exports = Router();
+export default router;

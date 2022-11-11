@@ -1,6 +1,6 @@
 import {Sequelize} from 'sequelize';
 
-module.exports = new Sequelize(
+export default new Sequelize(
     process.env.POSTGRES_DATABASE!,
     process.env.POSTGRES_USER!,
     process.env.POSTGRES_PASSWORD,

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
+import models from "../models/models";
 import apiError from "../error/apiError";
 
 export default class UserController {
@@ -19,7 +20,7 @@ export default class UserController {
         res.json(id);
     }
 
-    async modify(req: Request, res: Response) {
+    async change(req: Request, res: Response) {
         
     }
 
