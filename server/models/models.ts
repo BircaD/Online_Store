@@ -1,8 +1,17 @@
 import sequelize from '../src/db'
 import { DataTypes } from 'sequelize';
+import {Table, Column, PrimaryKey, DataType, Model} from 'sequelize-typescript'
 
-const User = sequelize.define('user', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+type userType = {
+    email: string
+    password: string
+    role: string
+}
+
+interface userInstance extends Model<userType>,userType{}
+
+const User = sequelize.define<userInstance>('user', {
+    //id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true,},
     password: {type: DataTypes.STRING},
     role: {type: DataTypes.STRING, defaultValue: "USER"},
@@ -30,6 +39,7 @@ const Device = sequelize.define('device', {
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     price: {type: DataTypes.INTEGER, allowNull: false},
     rating: {type: DataTypes.INTEGER, defaultValue: 0},
+    info: {type: DataTypes.STRING, allowNull: false},
     img: {type: DataTypes.STRING, allowNull: false}, 
 },
 {timestamps: false,
@@ -60,15 +70,6 @@ const DeviceRating = sequelize.define('rating', {
     createdAt: false,
     updatedAt: false})
 
-const DeviceInfo = sequelize.define('device_info', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title: {type: DataTypes.STRING, allowNull: false},
-    description: {type: DataTypes.STRING, allowNull: false},
-},
-{timestamps: false,
-    createdAt: false,
-    updatedAt: false})
-
 const TypeBrand = sequelize.define('type_brand', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 },
@@ -76,6 +77,47 @@ const TypeBrand = sequelize.define('type_brand', {
     createdAt: false,
     updatedAt: false})
 
+// @Table
+// export class TestUser extends Model {
+//     @PrimaryKey
+//     @Column ({type: DataType.INTEGER, autoIncrement: true})
+//     readonly id!: string
+
+//     @Column ({type: DataType.STRING, unique: true, allowNull: false})
+//     readonly email!: string
+
+//     @Column ({type: DataType.STRING})
+//     readonly password!: string
+
+//     @Column ({type: DataType.STRING})
+//     readonly role!: string
+// }
+// TestUser.init({}, {sequelize})
+
+// class TestUser extends Model {
+//     declare id: string; // this is ok! The 'declare' keyword ensures this field will not be emitted by TypeScript.
+//     declare role: string;
+//     declare email: string;
+//     declare password: string;
+//   }
+  
+//   User.init({
+//     id: {
+//       type: DataTypes.UUID,
+//       primaryKey: true,
+//       allowNull: false,
+//     },
+//     email: {
+//         type: DataType.STRING
+//     },
+//     password: {
+//         type: DataType.STRING
+//     },
+//     role: {
+//         type: DataType.STRING
+//     }
+    
+//   }, { sequelize });
 
 User.hasOne(Basket)
 Basket.belongsTo(User)
@@ -98,9 +140,6 @@ DeviceRating.belongsTo(Device)
 Device.hasMany(BasketDevice)
 BasketDevice.belongsTo(Device)
 
-Device.hasMany(DeviceInfo, {as: 'info'});
-DeviceInfo.belongsTo(Device)
-
 DeviceType.belongsToMany(DeviceBrand, {through: TypeBrand })
 DeviceBrand.belongsToMany(DeviceType, {through: TypeBrand })
 
@@ -113,6 +152,5 @@ export default {
     DeviceBrand,
     DeviceRating,
     TypeBrand,
-    DeviceInfo
 }
 
