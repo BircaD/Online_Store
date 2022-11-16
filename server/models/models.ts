@@ -77,48 +77,6 @@ const TypeBrand = sequelize.define('type_brand', {
     createdAt: false,
     updatedAt: false})
 
-// @Table
-// export class TestUser extends Model {
-//     @PrimaryKey
-//     @Column ({type: DataType.INTEGER, autoIncrement: true})
-//     readonly id!: string
-
-//     @Column ({type: DataType.STRING, unique: true, allowNull: false})
-//     readonly email!: string
-
-//     @Column ({type: DataType.STRING})
-//     readonly password!: string
-
-//     @Column ({type: DataType.STRING})
-//     readonly role!: string
-// }
-// TestUser.init({}, {sequelize})
-
-// class TestUser extends Model {
-//     declare id: string; // this is ok! The 'declare' keyword ensures this field will not be emitted by TypeScript.
-//     declare role: string;
-//     declare email: string;
-//     declare password: string;
-//   }
-  
-//   User.init({
-//     id: {
-//       type: DataTypes.UUID,
-//       primaryKey: true,
-//       allowNull: false,
-//     },
-//     email: {
-//         type: DataType.STRING
-//     },
-//     password: {
-//         type: DataType.STRING
-//     },
-//     role: {
-//         type: DataType.STRING
-//     }
-    
-//   }, { sequelize });
-
 User.hasOne(Basket)
 Basket.belongsTo(User)
 

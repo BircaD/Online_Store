@@ -5,6 +5,7 @@ import {v4} from "uuid";
 import models from "../models/models";
 import apiError from "../error/apiError";
 import UserController from "./userController";
+import { Model } from "sequelize";
 
 
 export default class DeviceController {
@@ -15,7 +16,7 @@ export default class DeviceController {
             const img: any = req.files?.img;
             let fileName = v4() + ".jpg";
             img?.mv(path.resolve(__dirname, '..', 'static', fileName));
-            const device = await models.Device.create({ name, price, brandId, typeId, img: fileName });
+            const device = await models.Device.create({ name, price, brandId, typeId, info, img: fileName });
 
             return res.json(device);
         } catch (err) {
@@ -29,11 +30,11 @@ export default class DeviceController {
 
     async getAll(req: Request, res: Response) {
         let { brandId, typeId } = req.query;
-        let limit = Number(req.query.limit);
-        let page = Number(req.query.page);
-        page = page || 1;
-        limit = limit || 9;
-        let offset = page * limit - limit;
+        const limit = Number(req.query.limit) || 1;
+        const page = Number(req.query.page) || 9;
+        // page = page || 1;
+        // limit = limit || 9;
+        const offset: number = page * limit - limit;
         let devices;
         if (!brandId && !typeId){
             devices = await models.Device.findAndCountAll({limit, offset});
@@ -44,7 +45,7 @@ export default class DeviceController {
         if (!brandId && typeId){
             devices = await models.Device.findAndCountAll({where: {typeId}});
         }
-         if (brandId && typeId){
+        if (brandId && typeId){
             devices = await models.Device.findAndCountAll({where: {brandId, typeId}});
         }
         return res.json(devices);
@@ -61,7 +62,7 @@ export default class DeviceController {
     }
 
     async change(req: Request, res: Response) {
-
+        
     }
 
     async delete(req: Request, res: Response) {

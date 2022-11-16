@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import models from '../models/models';
 import apiError from '../error/apiError';
+
 export default class DeviceBrandController {
     async create(req: Request, res: Response) {
         const { name } = req.body;
