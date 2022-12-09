@@ -6,9 +6,9 @@ import DeviceStore from './store/DeviceStore';
 import UserStore from './store/UserStore';
 
 export const Context = createContext({});
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
   <Context.Provider value={{
     user: new UserStore(),

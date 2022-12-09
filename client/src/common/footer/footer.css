@@ -1,0 +1,20 @@
+footer {
+    padding: 100px 0;
+    max-width: 1550px;
+    margin: 0 auto;
+    
+  }
+  footer p {
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.5;
+    margin-bottom: 20px;
+  }
+  footer h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  footer li {
+    margin-bottom: 10px;
+    opacity: 0.5;
+  }

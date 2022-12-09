@@ -1,0 +1,80 @@
+.head {
+    padding: 10px 0;
+    max-width: 1550px;
+    margin: 0 auto;  
+}
+.head i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+.head a {
+    font-size: 20px;
+}
+.head img {
+    vertical-align: middle;
+    border-style: none;
+    padding-left: 1px;
+    font-size: 20px;
+}
+.headContainer{
+  display: flex;
+  gap: 100px;
+  align-items: center;
+}
+.navLayout {
+  position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    background: rgb(236, 241, 248); 
+}
+.header {
+  max-width: 1550px;
+  margin: 0 auto;
+  position: sticky;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+.headerSearch {
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+    padding: 0;
+    position: relative; 
+}
+.headerSearch input {
+    margin: 0;
+    border: none;
+    width: 100%;
+    background-color: #fff;
+    font-size: 14px;
+    padding: 7px;
+    min-height: 42px;
+    box-shadow: none;
+    border-radius: 5px;
+}
+.searchButton {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: none;
+  cursor: pointer;
+}
+::placeholder {
+    font-size: 15px;
+}
+.categories {
+  width: 550px;
+  align-items: center;
+  padding: 0px 30px;
+  border-radius: 5px;
+  height: 6vh;
+  margin-top: 12px;
+}
+.categories b {
+  margin-right: 18px;
+  margin-bottom: 10px;
+}
+
+  
